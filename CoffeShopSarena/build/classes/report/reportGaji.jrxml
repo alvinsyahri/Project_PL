@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="58"/>
+	<parameter name="year" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="month" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT g.id_gaji, g.tanggal, k.nama, j.nama_jabatan, j.Nominal_gaji FROM gaji g LEFT JOIN input_data_karyawan k ON g.karyawan = k.id_karyawan LEFT JOIN jabatan j ON k.jabatan = j.id_jabatan WHERE year(g.tanggal) = $P{year} AND month(g.tanggal) = $P{month} ORDER BY g.tanggal]]>
+	</queryString>
+	<field name="id_gaji" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_jabatan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Nominal_gaji" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="id_gaji_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{id_gaji}]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="99">
+			<rectangle>
+				<reportElement x="-22" y="-25" width="600" height="124" backcolor="#66CCFF"/>
+			</rectangle>
+			<line>
+				<reportElement x="34" y="84" width="472" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="59" y="-7" width="116" height="79"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\fauzu\\Downloads\\PngItem_563540.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="200" y="12" width="162" height="25"/>
+				<textElement lineSpacing="Single">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Coffe Shop Sarena]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="53" width="149" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Laporan Barang Belanjaaan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39">
+			<line>
+				<reportElement x="0" y="37" width="555" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="1" width="111" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[id_gaji]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="1" width="111" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="1" width="111" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Nominal_gaji]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="1" width="111" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[nama_jabatan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="1" width="111" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{id_gaji}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="1" width="111" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Nominal_gaji}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="1" width="111" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="1" width="111" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_jabatan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="44">
+			<rectangle>
+				<reportElement x="-22" y="0" width="600" height="39" backcolor="#3399FF"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="214" y="9" width="135" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[© 2022 Coffe Shop Sarena]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="185">
+			<line>
+				<reportElement x="-22" y="20" width="600" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="40" y="44" width="46" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Jumlah :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="44" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{id_gaji_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

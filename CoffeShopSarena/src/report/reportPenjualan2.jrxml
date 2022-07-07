@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="belanjaan">
+		<parameter name="tanggal1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="tanggal2" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT * FROM tb_supplier WHERE tanggal BETWEEN $P{tanggal1} AND $P{tanggal2}]]>
+		</queryString>
+		<field name="id_supplier" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="tanggal" class="java.sql.Date">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="barang" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="jumlah" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="harga" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="tahun" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="bulan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="modal" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT t.id_transaksi, b.nama_barang, t.tanggal, b.harga_barang, t.jumlah, t.total from transaksi t LEFT JOIN barang b ON t.barang = b.id_barang where year(t.tanggal)=$P{tahun} AND month(t.tanggal)=$P{bulan} ORDER BY tanggal]]>
+	</queryString>
+	<field name="id_transaksi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_barang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga_barang" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jumlah" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="total_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="id_transaksi_2" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{id_transaksi}]]></variableExpression>
+	</variable>
+	<variable name="pendapatan" class="java.lang.Number">
+		<variableExpression><![CDATA[$V{total_1}-$P{modal}]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="104">
+			<rectangle>
+				<reportElement x="-21" y="-22" width="600" height="122" backcolor="#66CCFF"/>
+			</rectangle>
+			<image>
+				<reportElement x="53" y="-12" width="116" height="79"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\fauzu\\Downloads\\PngItem_563540.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="199" y="10" width="162" height="25"/>
+				<textElement lineSpacing="Single">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Coffe Sho Sarena]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="47" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Laporan Penjualan]]></text>
+			</staticText>
+			<line>
+				<reportElement x="40" y="83" width="472" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26">
+			<staticText>
+				<reportElement x="0" y="3" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[id_transaksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="478" y="3" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="-2" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="386" y="3" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="3" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[nama_barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="3" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="3" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[harga_barang]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32">
+			<textField>
+				<reportElement x="77" y="7" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="7" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="7" width="92" height="20"/>
+				<textElement textAlignment="Justified" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{id_transaksi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="478" y="7" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="7" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{jumlah}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="279" y="7" width="92" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{harga_barang}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="48"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="43">
+			<rectangle>
+				<reportElement x="-21" y="0" width="600" height="39" backcolor="#3399FF"/>
+			</rectangle>
+			<elementGroup/>
+			<staticText>
+				<reportElement x="208" y="9" width="135" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[© 2022 Coffe Shop Sarena]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="169">
+			<textField>
+				<reportElement x="399" y="73" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{total_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="73" width="113" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Total Harga Barang  :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="43" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{id_transaksi_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="34" y="43" width="46" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Jumlah : ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-21" y="22" width="600" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="286" y="138" width="113" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Total Pendapatan    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="106" width="113" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Total Modal Barang :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="399" y="106" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{modal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="138" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.Number"><![CDATA[$V{pendapatan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
